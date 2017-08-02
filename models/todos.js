@@ -21,7 +21,16 @@ module.exports = {
     tasks[name].push(task);
   },
   // etc.
-  list: function (name) {
+  list: function (name, status) {
+    if (status === 'complete'){
+      return tasks[name].filter(function(task){
+        return task.complete
+      });      
+    } else if (status === 'active') {
+      return tasks[name].filter(function(task){
+        return !task.complete
+      });
+    }
     return tasks[name];
   }, 
   complete: function (name, index) {
